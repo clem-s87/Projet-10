@@ -1,0 +1,14 @@
+.amount {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.title  {
+    margin: 0;
+    font-weight: normal;
+}
+
+.description {
+    margin: 0;
+}

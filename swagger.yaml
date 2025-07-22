@@ -1,0 +1,110 @@
+swagger: "2.0"
+info:
+  title: ArgentBank API
+  description: Cette API permet de récupérer les transactions liées à un compte utilisateur.
+    Un token JWT est requis dans l'en-tête `Authorization`.
+  version: 1.0.0
+
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - https
+
+paths:
+  /accounts/{accountId}/transactions:
+    get:
+      summary: Récupérer les transactions d’un compte
+      description: Retourne toutes les transactions associées à un compte utilisateur spécifique.
+        Le token d’authentification est requis.
+      produces:
+        - application/json
+      parameters:
+        - name: accountId
+          in: path
+          description: L’ID du compte bancaire
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: Token d'authentification JWT 
+          required: true
+          type: string
+      responses:
+        200:
+          description: Transactions récupérées avec succès
+        401:
+          description: Authorization error
+        500:
+          description: Internal Server Error
+
+  /transactions/{transactionId}/category:
+      put:
+        summary: Modifier la catégorie d’une transaction
+        description: Permet de mettre à jour la catégorie d’une transaction spécifique.
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+        - name: transactionId
+          in: path
+          description: ID de la transaction
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - in: body
+          name: category
+          description: Nouvelle catégorie à attribuer
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+        responses:
+        200:
+          description: Catégorie mise à jour avec succès
+        400:
+          description: Requête invalide
+        401:
+          description: Non autorisé
+        404:
+          description: Transaction introuvable
+
+  /transactions/{transactionId}/note:
+    put:
+      summary: Modifier la note d’une transaction
+      description: Permet de mettre à jour le champ "note" d’une transaction.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          required: true
+          type: string
+        - in: body
+          name: note
+          required: true
+          schema:
+            type: object
+            properties:
+              note:
+                type: string
+      responses:
+        200:
+          description: Note mise à jour avec succès
+        400:
+          description: Requête invalide
+        401:
+          description: Non autorisé
+        404:
+          description: Transaction introuvable

@@ -1,0 +1,28 @@
+h2 {
+    color: white;
+}
+
+.edit-name-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.container-button {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.container-button button {
+    border-radius: 5px;
+}
+
+.user-nom {
+    padding-bottom: 10px;
+}
+
+.main-dark {
+    height: 790px;
+}
