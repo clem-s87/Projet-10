@@ -106,4 +106,5 @@ paths:
           description: Requête invalide
         401:
           description: Non autorisé
-        
+        404:
+          description: Transaction introuvable
