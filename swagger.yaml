@@ -11,6 +11,27 @@ schemes:
   - https
 
 paths:
+
+  /accounts:
+    get:
+      summary: Récupérer tous les comptes de l’utilisateur
+      description: Retourne la liste des comptes bancaires associés à l’utilisateur connecté.
+      produces:
+        - application/json
+      parameters:
+        - name: Authorization
+          in: header
+          description: Token JWT pour authentification
+          required: true
+          type: string
+      responses:
+        200:
+          description: Liste des comptes récupérée avec succès
+        401:
+          description: Utilisateur non autorisé (token manquant ou invalide)
+        500:
+          description: Erreur interne du serveur
+
   /accounts/{accountId}/transactions:
     get:
       summary: Récupérer les transactions d’un compte
@@ -32,10 +53,43 @@ paths:
       responses:
         200:
           description: Transactions récupérées avec succès
+          schema:
+            type: object
+            properties:
+              transactions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    transactionId:
+                      type: string
+                      example: "txn_123456"
+                    date:
+                      type: string
+                      format: date
+                      example: "2025-07-16"
+                    description:
+                      type: string
+                      example: "Paiement Amazon"
+                    amount:
+                      type: number
+                      format: float
+                      example: 59.99
+                    balance:
+                      type: number
+                      format: float
+                      example: 1940.50
+                    category:
+                      type: string
+                      example: "Courses"
+                    note:
+                      type: string
+                      example: "Achat anniversaire"
         401:
           description: Authorization error
         500:
           description: Internal Server Error
+
 
   /transactions/{transactionId}/category:
       put:
