@@ -1,7 +1,9 @@
 import Header from "../components/Header";
 import Banner from "../components/Banner";
 import Footer from '../components/Footer';
-import imgchat from '../img/icon-chat.png';
+import imgchat from '../img/icon-chat.webp';
+import imgmoney from '../img/icon-money.webp';
+import imgsecu from '../img/icon-security.webp';
 
 
 
@@ -23,7 +25,7 @@ function Home () {
         </div>
         <div className="feature-item">
           <img
-            src={imgchat}
+            src={imgmoney}
             alt="Chat Icon"
             className="feature-icon"
           />
@@ -34,7 +36,7 @@ function Home () {
         </div>
         <div className="feature-item">
           <img
-            src={imgchat}
+            src={imgsecu}
             alt="Chat Icon"
             className="feature-icon"
           />
