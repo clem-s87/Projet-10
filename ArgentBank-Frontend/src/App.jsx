@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './app/store.js'; 
 import './App.css';
+import { Navigate } from 'react-router-dom';
 
 import Home from "./pages/Home.jsx";
 import Sign from "./pages/Sign.jsx";
@@ -20,6 +21,7 @@ function App() {
               <User />
             </PrivateRoute>
           } />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </Provider>
